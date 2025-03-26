@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header%}
+ {% include 'includes/message.html' %}
+{% endblock%}
+
+
+{% block content %}
+<body class="custom-body">
+    <div class="container custom-container">
+        <div class="title">Generator Password</div>
+
+        <form action="{% url 'generator' %}" method="POST">
+            {% csrf_token %}
+
+            <!-- Count Symbols -->
+            <div class="form-group">
+                <label for="{{ form.count_symbol.id_for_label }}">{{ form.count_symbol.label_tag }}</label>
+                {{ form.count_symbol }}
+                <small id="countSymbols" class="form-text">count symbols</small>
+            </div>
+
+            <!-- Show Password with Copy Icon -->
+            <div class="form-group position-relative">
+                <label for="{{ form.show_password.id_for_label }}">{{ form.show_password.label_tag }}</label>
+                {{ form.show_password }}
+                <i class="copy-icon fa-solid fa-copy"></i>
+            </div>
+
+            <!-- Buttons -->
+            <div class="btn-group">
+                <button class="btn custom-btn" type="submit">Generate</button>
+                {% include './export_form.html' %}
+            </div>
+        </form>
+    </div>
+</body>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{% static 'main/css/home.css' %}">
+<link rel="stylesheet" href="{% static 'main/css/export_form.css' %}">
+<script type="text/javascript" src="{% static 'main/js/home.js' %}"></script>
+{% endblock %}

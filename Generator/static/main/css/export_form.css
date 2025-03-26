@@ -1,0 +1,77 @@
+/* Dark Glass Modal */
+.custom-modal {
+    background: rgba(20, 22, 30, 0.9); /* Darker background */
+    backdrop-filter: blur(18px);
+    border-radius: 20px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Modal Header */
+.custom-modal .modal-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.custom-modal .modal-title {
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* Modal Body */
+.custom-modal .modal-body {
+    color: #ddd;
+}
+
+/* Modal Footer */
+.custom-modal .modal-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Close Button */
+.btn-close-white {
+    filter: invert(1);
+}
+
+/* Select field */
+.custom-modal select.form-control {
+    width: 100%;
+    padding: 10px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    outline: none;
+}
+
+.custom-modal select.form-control:focus {
+    border-color: #7c6fff;
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 0 8px rgba(124, 111, 255, 0.4);
+}
+
+/* Custom Buttons */
+.custom-btn {
+    background: linear-gradient(90deg, #6c63ff, #4a43d6);
+    border: none;
+    padding: 10px 20px;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 6px 14px rgba(108, 99, 255, 0.35);
+    transition: all 0.3s ease;
+}
+
+.custom-btn:hover {
+    background: linear-gradient(90deg, #817aff, #5a54e3);
+    transform: translateY(-2px);
+}
+
+/* Darker blurred backdrop */
+.modal-backdrop.show {
+    background-color: rgba(10, 10, 15, 0.85);
+    backdrop-filter: blur(5px);
+}
