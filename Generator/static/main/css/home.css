@@ -1,0 +1,15 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    max-width: 400px;
+    width: 100%;
+}
+
+.copy-icon{
+    color: rgb(20, 127, 108);
+    cursor: pointer;
+}
