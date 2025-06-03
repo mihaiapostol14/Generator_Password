@@ -5,10 +5,12 @@ from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import FormView
 
-from .forms import GeneratorForm
 from .password_chars import chars
-from .forms import ExportFormatForm
 from .utils import GeneratorMixin
+from .forms import (
+    GeneratorForm,
+    ExportFormatForm
+)
 
 
 class GeneratorFormView(FormView, GeneratorMixin):
@@ -16,8 +18,10 @@ class GeneratorFormView(FormView, GeneratorMixin):
     template_name = 'main/home.html'
 
     def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        form.is_valid()
         """Handles form submission and generates a password."""
-        count_symbol = int(request.POST.get('count_symbol',12))
+        count_symbol = form.cleaned_data['count_symbol']
         password = ''.join(chars[randint(0, len(chars) - 1)] for _ in range(count_symbol))  # Generate password
 
         # Store the password in session so it can be accessed in get_initial
@@ -42,14 +46,13 @@ class GeneratorFormView(FormView, GeneratorMixin):
 
 class ExportFormatFormView(FormView, GeneratorMixin):
     form_class = ExportFormatForm
-    template_name = 'main/home.html'
+    template_name = 'main/export_form.html'
 
     def post(self, request, *args, **kwargs):
-        show_password = self.request.POST.get('show_password')
-        print(show_password)
+        show_password = self.request.session.get('generated_password', '')
 
         response = HttpResponse(content=show_password, content_type='plain/text')
-        response['Content-Disposition'] = 'attachment; filename="password.txt"'
+        response['Content-Disposition'] = 'attachment; filename="yours_password.txt"'
         return response
 
     def get_context_data(self, **kwargs):
