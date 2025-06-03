@@ -2,15 +2,16 @@ from django import forms
 from django.forms import Form
 
 class GeneratorForm(Form):
-    count_symbol = forms.CharField(
+    count_symbol = forms.IntegerField(
         label='Count Symbols',
         initial=12,
-        widget=forms.TextInput(attrs={
-            'type':'number',
+        min_value=12,
+        max_value=120,
+        widget=forms.NumberInput(attrs={
             'id': 'countSymbols',
-            'placeholder':'count symbols',
+            'placeholder': 'count symbols',
             'aria-describedby': 'countSymbolsHelp',
-            'class':'form-control text-capitalize p-2',
+            'class': 'form-control text-capitalize p-2',
             'required': ''
         })
     )
