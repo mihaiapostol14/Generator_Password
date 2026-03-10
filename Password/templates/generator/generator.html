@@ -1,0 +1,100 @@
+{%extends 'base.html'%}
+{%load static%}
+
+{%block content%}
+
+{% block toast_messages %}
+
+<div class="container mt-5">
+    <div class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body">
+            password copied
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+
+{% endblock toast_messages %}
+
+
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card bg-secondary text-light shadow">
+                <div class="card-body">
+                    <h3 class="text-center mb-4">🔐 Password Generator</h3>
+
+                    <form action="{% url 'generator:generator' %}" method="POST">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            {{ form.length.label_tag }}
+                            {{ form.length }}
+                        </div>
+
+                        <div class="form-check">
+                            {{ form.uppercase }}
+                            <label class="form-check-label">
+                                {{ form.uppercase.label }}
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            {{ form.lowercase }}
+                            <label class="form-check-label">
+                                {{ form.lowercase.label }}
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            {{ form.numbers }}
+                            <label class="form-check-label">
+                                {{ form.numbers.label }}
+                            </label>
+                        </div>
+
+                        <div class="form-check mb-3">
+                            {{ form.symbols }}
+                            <label class="form-check-label">
+                                {{ form.symbols.label }}
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-success w-100">
+                            Generate Password
+                        </button>
+                    </form>
+
+                    {% if password %}
+                    <div class="mt-4">
+                        <label class="form-label">Generated Password</label>
+                        <div class="input-group">
+                        <div class=" form-control show-password">{{password}}</div>
+                            <button
+                                class="btn btn-copy btn-outline-light"
+                                type="button"
+                            >
+                                Copy
+                            </button>
+
+                            {% comment %} {% include './export_form.html' %} {% endcomment %}
+
+                        </div>
+                    </div>
+                    {% endif %}
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{% static 'generator/css/generator.css' %}">
+<script type="text/javascript" src="{% static 'generator/js/generator.js' %}"></script>
+{%endblock%}
