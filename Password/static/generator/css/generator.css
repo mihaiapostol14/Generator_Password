@@ -1,0 +1,114 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Background - Modern Deep Space */
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at top right, #1e293b, #000000);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+/* Main card - Glassmorphism (Replaces .card.bg-secondary) */
+.card {
+  background: rgba(255, 255, 255, 0.05) !important; /* Overriding Bootstrap bg-secondary */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 24px !important;
+  padding: 20px;
+}
+
+/* Title Styling */
+h3.text-center {
+  font-weight: 600;
+  letter-spacing: 1px;
+  background: linear-gradient(to right, #00d2ff, #3a7bd5);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Form Controls (Length Input) */
+.form-control {
+  background: rgba(0, 0, 0, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #fff !important;
+  border-radius: 12px !important;
+  padding: 12px;
+}
+
+.form-control:focus {
+  background: rgba(0, 0, 0, 0.4) !important;
+  border-color: #00d2ff !important;
+  box-shadow: 0 0 15px rgba(0, 210, 255, 0.2) !important;
+}
+
+/* Checkbox Styling */
+.form-check {
+  margin-bottom: 12px;
+  padding-left: 1.8em;
+}
+
+.form-check-input {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+}
+
+.form-check-input:checked {
+  background-color: #00d2ff !important;
+  border-color: #00d2ff !important;
+}
+
+/* Generate Button (Replaces .btn-success) */
+.btn-success {
+  background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%) !important;
+  border: none !important;
+  height: 50px;
+  border-radius: 12px !important;
+  font-weight: 600;
+  margin-top: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.btn-success:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 210, 255, 0.3);
+}
+
+/* Password Display Box */
+.show-password {
+  background: #0f172a !important;
+  color: #00ffcc !important;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  letter-spacing: 2px;
+  border: 1px solid rgba(0, 255, 204, 0.2) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Copy Button */
+.btn-outline-light {
+  border-radius: 0 12px 12px 0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  transition: 0.3s;
+}
+
+.btn-outline-light:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Toast Modernization */
+.toast {
+  border-radius: 12px !important;
+  background: #00d2ff !important;
+  backdrop-filter: blur(10px);
+}
