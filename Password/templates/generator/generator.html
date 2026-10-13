@@ -1,100 +1,156 @@
-{%extends 'base.html'%}
-{%load static%}
+{% extends 'base.html' %}
+{% load static %}
 
-{%block content%}
+{% block content %}
+<div class="password-generator-page">
 
-{% block toast_messages %}
-
-<div class="container mt-5">
-    <div class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="d-flex">
-          <div class="toast-body">
-            password copied
-          </div>
-          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-      </div>
-
-{% endblock toast_messages %}
-
-
-
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-
-            <div class="card bg-secondary text-light shadow">
-                <div class="card-body">
-                    <h3 class="text-center mb-4">🔐 Password Generator</h3>
-
-                    <form action="{% url 'generator:generator' %}" method="POST">
-                        {% csrf_token %}
-
-                        <div class="mb-3">
-                            {{ form.length.label_tag }}
-                            {{ form.length }}
-                        </div>
-
-                        <div class="form-check">
-                            {{ form.uppercase }}
-                            <label class="form-check-label">
-                                {{ form.uppercase.label }}
-                            </label>
-                        </div>
-
-                        <div class="form-check">
-                            {{ form.lowercase }}
-                            <label class="form-check-label">
-                                {{ form.lowercase.label }}
-                            </label>
-                        </div>
-
-                        <div class="form-check">
-                            {{ form.numbers }}
-                            <label class="form-check-label">
-                                {{ form.numbers.label }}
-                            </label>
-                        </div>
-
-                        <div class="form-check mb-3">
-                            {{ form.symbols }}
-                            <label class="form-check-label">
-                                {{ form.symbols.label }}
-                            </label>
-                        </div>
-
-                        <button type="submit" class="btn btn-success w-100">
-                            Generate Password
-                        </button>
-                    </form>
-
-                    {% if password %}
-                    <div class="mt-4">
-                        <label class="form-label">Generated Password</label>
-                        <div class="input-group">
-                        <div class=" form-control show-password">{{password}}</div>
-                            <button
-                                class="btn btn-copy btn-outline-light"
-                                type="button"
-                            >
-                                Copy
-                            </button>
-
-                            {% comment %} {% include './export_form.html' %} {% endcomment %}
-
-                        </div>
-                    </div>
-                    {% endif %}
-
-                </div>
+    {% block toast_messages %}
+    <div class="password-toast-region" aria-live="polite" aria-atomic="true">
+        <div class="toast password-toast align-items-center border-0" role="status">
+            <div class="d-flex">
+                <div class="toast-body">Password copied</div>
+                <button
+                    type="button"
+                    class="btn-close me-2 m-auto"
+                    data-bs-dismiss="toast"
+                    aria-label="Close"
+                ></button>
             </div>
-
         </div>
     </div>
+    {% endblock toast_messages %}
+
+    <div class="container password-generator-container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+
+                <section class="card password-generator-card">
+                    <div class="card-body password-generator-card-body">
+
+                        <header class="password-generator-header">
+                            <span class="password-generator-eyebrow">
+                                SECURE BY DESIGN
+                            </span>
+
+                            <h1 class="password-generator-title">
+                                Password Generator
+                            </h1>
+
+                            <p class="password-generator-subtitle">
+                                Create a strong password tailored to your needs.
+                            </p>
+                        </header>
+
+                        <!-- Password generation form: unchanged -->
+                        <form
+                            action="{% url 'generator:generator' %}"
+                            method="POST"
+                            class="password-generator-form"
+                        >
+                            {% csrf_token %}
+
+                            <div class="mb-3 password-length-field">
+                                {{ form.length.label_tag }}
+                                {{ form.length }}
+                            </div>
+
+                            <fieldset class="password-options">
+                                <legend class="password-options-legend">
+                                    Character sets
+                                </legend>
+
+                                <div class="form-check">
+                                    {{ form.uppercase }}
+                                    <label class="form-check-label">
+                                        {{ form.uppercase.label }}
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    {{ form.lowercase }}
+                                    <label class="form-check-label">
+                                        {{ form.lowercase.label }}
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    {{ form.numbers }}
+                                    <label class="form-check-label">
+                                        {{ form.numbers.label }}
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-3">
+                                    {{ form.symbols }}
+                                    <label class="form-check-label">
+                                        {{ form.symbols.label }}
+                                    </label>
+                                </div>
+                            </fieldset>
+
+                            <button
+                                type="submit"
+                                class="btn btn-success w-100 password-generate-button"
+                            >
+                                <span>Generate Password</span>
+                                <span class="password-button-arrow" aria-hidden="true">↗</span>
+                            </button>
+                        </form>
+
+                        <!-- Generated password output -->
+                        <section
+                            class="password-output-section"
+                            aria-labelledby="generated-password-label"
+                        >
+                            <label
+                                id="generated-password-label"
+                                class="form-label password-output-label"
+                            >
+                                Generated password
+                            </label>
+
+                            <div class="input-group password-output-group">
+                                <div
+                                    class="form-control show-password"
+                                    aria-live="polite"
+                                >{{ password|default_if_none:"" }}</div>
+
+                                <button
+                                    class="btn btn-copy btn-outline-light"
+                                    type="button"
+                                >
+                                    Copy
+                                </button>
+
+                                <!-- Modal include removed from this location -->
+                            </div>
+                        </section>
+
+                    </div>
+                </section>
+
+                <p class="password-generator-footnote">
+                    <span class="password-status-dot" aria-hidden="true"></span>
+                    Passwords are generated using your selected character sets.
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Export trigger and modal component outside the card -->
+<!--    {% include './export_form.html' %}-->
+
 </div>
 
+<link
+    rel="stylesheet"
+    href="{% static 'generator/css/generator.css' %}"
+>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="{% static 'generator/css/generator.css' %}">
-<script type="text/javascript" src="{% static 'generator/js/generator.js' %}"></script>
-{%endblock%}
+<script
+    src="{% static 'generator/js/generator.js' %}"
+    defer
+></script>
+
+{% endblock %}
