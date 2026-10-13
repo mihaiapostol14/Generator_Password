@@ -1,0 +1,342 @@
+/* 1. Modal Backdrop */
+.modal-backdrop.show {
+    display: none !important;
+}
+
+/* 2. Export Trigger Button */
+.custom-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 42px;
+    padding: 0.65rem 1.2rem;
+
+    color: var(--pg-text, #e8eef5);
+    background: var(--pg-surface-raised, #182330);
+    border: 1px solid var(--pg-border-strong, #354657);
+    border-radius: 10px;
+
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1.4;
+
+    cursor: pointer;
+    transition:
+        color 0.2s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.custom-btn-secondary:hover {
+    color: var(--pg-accent, #00e6a7);
+    background: rgba(0, 230, 167, 0.06);
+    border-color: rgba(0, 230, 167, 0.45);
+    box-shadow: 0 4px 14px rgba(0, 230, 167, 0.07);
+}
+
+.custom-btn-secondary:active {
+    transform: translateY(1px);
+}
+
+/* 3. Modal Dialog */
+#exportModal .modal-dialog {
+    width: calc(100% - 2rem);
+    max-width: 440px;
+    margin: 1.75rem auto;
+}
+
+/* 4. Modal Card */
+#exportModal .custom-modal {
+    position: relative;
+    overflow: hidden;
+
+    color: var(--pg-text, #e8eef5);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.035),
+            transparent 48%
+        ),
+        var(--pg-surface, #0e1620);
+
+    border: 1px solid var(--pg-border-strong, #2a3949);
+    border-radius: var(--pg-radius, 16px);
+
+    box-shadow:
+        0 24px 64px rgba(0, 0, 0, 0.48),
+        0 4px 16px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/* 5. Modal Header */
+#exportModal .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+    padding: 1.25rem 1.5rem;
+
+    border-bottom: 1px solid var(--pg-border, #263443);
+}
+
+#exportModal .modal-title {
+    margin: 0;
+
+    color: var(--pg-text, #e8eef5);
+
+    font-size: 1.15rem;
+    font-weight: 750;
+    line-height: 1.4;
+    letter-spacing: -0.025em;
+}
+
+/* Subtle accent under the title */
+#exportModal .modal-title::after {
+    display: block;
+    width: 34px;
+    height: 3px;
+    margin-top: 0.45rem;
+
+    background: linear-gradient(
+        90deg,
+        var(--pg-accent, #00e6a7),
+        var(--pg-accent-blue, #0099ff)
+    );
+
+    border-radius: 99px;
+    content: "";
+}
+
+/* 6. Modal Body */
+#exportModal .modal-body {
+    padding: 1.5rem;
+    color: var(--pg-text, #e8eef5);
+}
+
+#exportModal .form-label {
+    display: block;
+    margin-bottom: 0.6rem;
+
+    color: var(--pg-text, #e8eef5);
+
+    font-size: 0.875rem;
+    font-weight: 650;
+}
+
+/* 7. Export Format Select */
+#exportModal .form-select {
+    display: block;
+    width: 100%;
+    min-height: 46px;
+
+    padding: 0.7rem 2.75rem 0.7rem 0.95rem;
+
+    color: var(--pg-text, #e8eef5);
+    background-color: var(--pg-input, #121a24);
+
+    border: 1px solid var(--pg-border, #2a3b4c);
+    border-radius: 10px;
+
+    font-size: 0.9rem;
+    line-height: 1.5;
+
+    cursor: pointer;
+    box-shadow: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+/* Dropdown Focus */
+#exportModal .form-select:focus {
+    color: var(--pg-text, #e8eef5);
+    background-color: var(--pg-input, #121a24);
+
+    border-color: var(--pg-accent, #00e6a7);
+
+    outline: 0;
+    box-shadow: 0 0 0 3px rgba(0, 230, 167, 0.14);
+}
+
+/* Dropdown Options */
+#exportModal .form-select option {
+    color: var(--pg-text, #e8eef5);
+    background-color: var(--pg-input, #121a24);
+}
+
+/* 8. Modal Footer */
+#exportModal .modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+
+    padding: 1rem 1.5rem;
+
+    border-top: 1px solid var(--pg-border, #263443);
+}
+
+/* 9. Modal Buttons — Shared Styles */
+#exportModal .modal-footer .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+
+    min-height: 41px;
+    padding: 0.65rem 1.2rem;
+
+    border-radius: 9px;
+
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.4;
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease,
+        filter 0.2s ease;
+}
+
+/* 10. Cancel Button */
+#exportModal .modal-footer .btn-secondary {
+    color: var(--pg-muted, #9aabba);
+    background: transparent;
+
+    border: 1px solid var(--pg-border, #2a3b4c);
+}
+
+#exportModal .modal-footer .btn-secondary:hover {
+    color: var(--pg-text, #e8eef5);
+    background: rgba(255, 255, 255, 0.045);
+    border-color: var(--pg-border-strong, #354657);
+}
+
+/* 11. Save / Export Button */
+#exportModal .modal-footer .btn-primary {
+    color: #06130f;
+
+    background: linear-gradient(
+        105deg,
+        #00d99d 0%,
+        var(--pg-accent, #00e6a7) 52%,
+        var(--pg-accent-blue, #0099ff) 100%
+    );
+
+    border: 1px solid transparent;
+
+    box-shadow: 0 5px 16px rgba(0, 230, 167, 0.14);
+}
+
+#exportModal .modal-footer .btn-primary:hover:not(:disabled) {
+    color: #06130f;
+    filter: brightness(1.06);
+
+    box-shadow: 0 7px 20px rgba(0, 230, 167, 0.2);
+    transform: translateY(-1px);
+}
+
+#exportModal .modal-footer .btn-primary:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 230, 167, 0.12);
+}
+
+/* 12. Disabled Buttons */
+#exportModal .modal-footer .btn:disabled,
+.custom-btn-secondary:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+/* 13. Close Button */
+#exportModal .btn-close {
+    flex-shrink: 0;
+
+    width: 36px;
+    height: 36px;
+    padding: 0.65rem;
+    margin: -0.25rem -0.35rem -0.25rem auto;
+
+    background: transparent;
+    background-image: none;
+
+    border: 0;
+    border-radius: 8px;
+
+    filter: invert(1) grayscale(1) brightness(1.5);
+    opacity: 0.72;
+
+    transition:
+        opacity 0.2s ease,
+        background-color 0.2s ease;
+}
+
+#exportModal .btn-close:hover {
+    background-color: rgba(255, 255, 255, 0.07);
+    opacity: 1;
+}
+
+/* 14. Accessible Keyboard Focus */
+#exportModal .modal-footer .btn:focus-visible,
+#exportModal .btn-close:focus-visible,
+.custom-btn-secondary:focus-visible {
+    outline: 2px solid var(--pg-accent, #00e6a7);
+    outline-offset: 3px;
+}
+
+/* 15. Modal Animation */
+@media (prefers-reduced-motion: no-preference) {
+    #exportModal .modal-dialog {
+        transition: transform 0.25s ease-out;
+    }
+}
+
+/* 16. Mobile Responsive Layout */
+@media (max-width: 575.98px) {
+    #exportModal .modal-dialog {
+        width: auto;
+        max-width: none;
+        margin: 1rem;
+    }
+
+    #exportModal .modal-header {
+        padding: 1rem 1.15rem;
+    }
+
+    #exportModal .modal-body {
+        padding: 1.15rem;
+    }
+
+    #exportModal .modal-footer {
+        padding: 0.9rem 1.15rem;
+        gap: 0.55rem;
+    }
+
+    #exportModal .modal-footer .btn {
+        flex: 1 1 0;
+    }
+}
+
+/* 17. Reduced Motion Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    #exportModal *,
+    .custom-btn-secondary {
+        scroll-behavior: auto;
+        animation: none;
+        transition: none;
+    }
+}
