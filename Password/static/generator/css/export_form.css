@@ -1,0 +1,101 @@
+body::before,
+body::after {
+    pointer-events: none;
+}
+
+/* Keep Bootstrap's backdrop below the modal */
+.modal-backdrop {
+    z-index: 1050;
+    pointer-events: auto;
+    background-color: #05080c;
+}
+
+.modal-backdrop.show {
+    opacity: 0.78;
+}
+
+/* Keep the modal above its backdrop */
+#exportModal {
+    z-index: 1055;
+    --bs-modal-bg: transparent;
+    --bs-modal-color: var(--text-primary, #ffffff);
+}
+
+/* Preserve the modal's intended appearance and scrolling */
+#exportModal .modal-dialog {
+    position: relative;
+    z-index: 1055;
+    max-width: 540px;
+    pointer-events: auto;
+}
+
+#exportModal .custom-modal {
+    position: relative;
+    overflow: hidden;
+    pointer-events: auto;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.045),
+            rgba(255, 255, 255, 0.012)
+        ),
+        var(--bg-secondary, #121e28) !important;
+
+    border: 1px solid
+        var(--border-medium, rgba(255, 255, 255, 0.16)) !important;
+
+    border-radius: var(--radius-xl, 16px) !important;
+    color: var(--text-primary, #ffffff) !important;
+
+    box-shadow:
+        0 35px 100px rgba(0, 0, 0, 0.60),
+        0 10px 35px rgba(0, 0, 0, 0.25);
+}
+
+/* Decorative effects stay behind interactive content */
+#exportModal .custom-modal::before,
+#exportModal .custom-modal::after {
+    pointer-events: none;
+}
+
+/* Ensure modal content and controls receive clicks */
+#exportModal .modal-header,
+#exportModal .modal-body,
+#exportModal .modal-footer,
+#exportModal form,
+#exportModal form button,
+#exportModal form select,
+#exportModal form input,
+#exportModal form textarea {
+    position: relative;
+    pointer-events: auto;
+}
+
+#exportModal .modal-header,
+#exportModal .modal-body,
+#exportModal .modal-footer {
+    z-index: 1;
+}
+
+/* Avoid page-level overflow rules clipping the modal */
+#exportModal {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* Keep the modal usable on smaller screens */
+@media (max-width: 575.98px) {
+    #exportModal .modal-dialog {
+        margin: 0.75rem;
+    }
+
+    #exportModal .modal-header,
+    #exportModal .modal-body {
+        padding: 1rem;
+    }
+
+    #exportModal .custom-btn {
+        width: 100%;
+    }
+}
