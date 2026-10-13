@@ -66,14 +66,3 @@ class GeneratorForm(Form):
         return self.cleaned_data
 
 
-class ExportFormatForm(Form):
-    CHOICE_FORMAT = [
-        ('csv', 'CSV'),
-        ('txt', 'TXT'),
-        ('json', 'JSON'),
-    ]
-
-    file_format = forms.ChoiceField(
-        choices=CHOICE_FORMAT,
-        widget=forms.Select(attrs={'class': 'form-control'})
-    )
