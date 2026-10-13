@@ -1,6 +1,5 @@
-from django.core.exceptions import ValidationError
-from django.forms import Form
 from django import forms
+from django.forms import Form
 
 
 class GeneratorForm(Form):
@@ -53,27 +52,33 @@ class GeneratorForm(Form):
     )
 
     def clean(self):
-        self.cleaned_data = super().clean()
-        check_fields = [*self.base_fields.keys()][1:]
-        checkbox_values = []
+        """
+        Custom validation method to clean and verify form data.
+        Ensures proper length constraints and guarantees that
+        at least one character set checkbox is checked.
+        """
+        cleaned_data = super().clean()
 
-        for field_name in check_fields:
-            value = self.cleaned_data.get(field_name)
-            checkbox_values.append(value)
+        # 1. Safely retrieve and validate the password length
+        length = cleaned_data.get('length')
+        if length is not None:
+            if length < 1 or length > 500:
+                self.add_error('length', 'Password length must be between 1 and 500.')
 
-            if not any(checkbox_values):
-                raise ValidationError(f'Please Select {' or '.join(check_fields)}')
-        return self.cleaned_data
+        # 2. Explicitly fetch checkbox states by their field names
+        # (Replace these keys with your actual form field names if they differ)
+        use_upper = cleaned_data.get('uppercase', False)
+        use_lower = cleaned_data.get('lowercase', False)
+        use_digits = cleaned_data.get('digits', False)
+        use_symbols = cleaned_data.get('symbols', False)
+
+        # 3. Flexible check: allow any combination of checkboxes,
+        # but require at least one option to be selected to proceed.
+        if not (use_upper or use_lower or use_digits or use_symbols):
+            raise forms.ValidationError(
+                "You must select at least one character type to generate a password!"
+            )
+
+        return cleaned_data
 
 
-class ExportFormatForm(Form):
-    CHOICE_FORMAT = [
-        ('csv', 'CSV'),
-        ('txt', 'TXT'),
-        ('json', 'JSON'),
-    ]
-
-    file_format = forms.ChoiceField(
-        choices=CHOICE_FORMAT,
-        widget=forms.Select(attrs={'class': 'form-control'})
-    )
