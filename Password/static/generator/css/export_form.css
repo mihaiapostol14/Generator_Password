@@ -1,37 +1,23 @@
-/* =0. Isolated Centered Modal (No Full-Screen Backdrop Blocking) = */
+/* =0. Modernized Bootstrap 5.3 Custom Modal Styling = */
 
-/* Hidden state */
-#exportModal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 99999;
-    background: rgba(8, 13, 19, 0.5); /* Semi-transparent dimming only around the card */
-    overflow-y: auto;
+/* Bootstrap Modal Base Overrides & Backdrop Customization */
+.modal-backdrop.show {
+    background-color: rgba(8, 13, 19, 0.65); /* Clean non-blocking custom scrim */
+    backdrop-filter: blur(2px);
 }
 
-/* Visible state toggled via JS */
-#exportModal.is-open {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Modal Window Card */
+/* Modal Window Card Styling */
 .custom-modal {
     position: relative;
     width: 100%;
     max-width: 440px;
-    margin: 1rem;
+    margin: 1.75rem auto;
     border: 1px solid var(--pg-border-strong) !important;
     border-radius: var(--pg-radius) !important;
     background: linear-gradient(145deg, rgba(255, 255, 255, 0.035), transparent 48%), var(--pg-surface) !important;
     color: var(--pg-text) !important;
     box-shadow: 0 28px 80px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
-    pointer-events: auto !important; /* Fully clickable */
+    pointer-events: auto !important; /* Fully clickable elements */
 }
 
 .custom-modal .modal-header {
@@ -73,11 +59,21 @@
     background-position: right 1rem center;
     padding-right: 2.5rem;
     cursor: pointer;
+    background-color: var(--pg-input, #121a24);
+    color: var(--pg-text, #fff);
+    border-color: var(--pg-border, #2a3b4c);
+}
+
+.custom-modal select.form-control:focus {
+    background-color: var(--pg-input, #121a24);
+    color: var(--pg-text, #fff);
+    border-color: var(--pg-accent, #00e6a7);
+    box-shadow: 0 0 0 0.25rem rgba(0, 230, 167, 0.15);
 }
 
 .custom-modal select.form-control option {
-    background-color: var(--pg-input);
-    color: var(--pg-text);
+    background-color: var(--pg-input, #121a24);
+    color: var(--pg-text, #fff);
 }
 
 /* Custom Buttons */
@@ -89,7 +85,7 @@
     font-size: 0.88rem;
     font-weight: 700;
     padding: 0.65rem 1.25rem;
-    transition: all var(--pg-transition);
+    transition: all var(--pg-transition, 0.2s ease);
 }
 
 .custom-btn-secondary:hover {
@@ -118,14 +114,14 @@
 .custom-modal .btn-primary {
     border: 0 !important;
     border-radius: 9px !important;
-    background: linear-gradient(105deg, #00d99d, var(--pg-accent) 48%, var(--pg-accent-blue)) !important;
+    background: linear-gradient(105deg, #00d99d, var(--pg-accent, #00e6a7) 48%, var(--pg-accent-blue, #0099ff)) !important;
     color: #06110e !important;
     font-size: 0.88rem;
     font-weight: 800;
     padding: 0.6rem 1.25rem;
     box-shadow: 0 8px 20px rgba(0, 230, 167, 0.15);
     cursor: pointer;
-    transition: filter var(--pg-transition), transform var(--pg-transition);
+    transition: filter var(--pg-transition, 0.2s ease), transform var(--pg-transition, 0.2s ease);
 }
 
 .custom-modal .btn-primary:hover {
